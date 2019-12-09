@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/diplom/static/js/main.32923d9f.chunk.js",
-    "main.js.map": "/diplom/static/js/main.32923d9f.chunk.js.map",
+    "main.js": "/diplom/static/js/main.0b7b2c8b.chunk.js",
+    "main.js.map": "/diplom/static/js/main.0b7b2c8b.chunk.js.map",
     "runtime-main.js": "/diplom/static/js/runtime-main.1739d328.js",
     "runtime-main.js.map": "/diplom/static/js/runtime-main.1739d328.js.map",
-    "static/js/2.884a3e71.chunk.js": "/diplom/static/js/2.884a3e71.chunk.js",
-    "static/js/2.884a3e71.chunk.js.map": "/diplom/static/js/2.884a3e71.chunk.js.map",
+    "static/js/2.fab5d831.chunk.js": "/diplom/static/js/2.fab5d831.chunk.js",
+    "static/js/2.fab5d831.chunk.js.map": "/diplom/static/js/2.fab5d831.chunk.js.map",
     "index.html": "/diplom/index.html",
-    "precache-manifest.b8f83a128088175ac8455e8671e5d6e9.js": "/diplom/precache-manifest.b8f83a128088175ac8455e8671e5d6e9.js",
+    "precache-manifest.ec31d024a0546577d62d33a830778480.js": "/diplom/precache-manifest.ec31d024a0546577d62d33a830778480.js",
     "service-worker.js": "/diplom/service-worker.js"
   },
   "entrypoints": [
     "static/js/runtime-main.1739d328.js",
-    "static/js/2.884a3e71.chunk.js",
-    "static/js/main.32923d9f.chunk.js"
+    "static/js/2.fab5d831.chunk.js",
+    "static/js/main.0b7b2c8b.chunk.js"
   ]
 }
