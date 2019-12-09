@@ -112,7 +112,7 @@ const options = {
   series: [
     {
       data,
-      name: 'Ukraine',
+      name: 'Україна',
       dataLabels: {
         enabled: true,
         format: '{point.properties.postal-code}',
