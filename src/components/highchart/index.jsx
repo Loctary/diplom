@@ -1,6 +1,6 @@
 import React from 'react';
-import { render } from 'react-dom';
-import $ from 'jquery';
+import { useSelector, shallowEqual } from 'react-redux';
+// import $ from 'jquery';
 // Import Highcharts
 import Highcharts from 'highcharts/highmaps';
 import drilldow from 'highcharts/modules/drilldown';
@@ -12,8 +12,8 @@ drilldow(Highcharts);
 dataModule(Highcharts);
 
 const data = Highcharts.geojson(Highcharts.maps['countries/ua/ua-all']);
-console.log(data);
 const separators = Highcharts.geojson(Highcharts.maps['countries/ua/ua-all'], 'mapline');
+console.log(data);
 
 // Set drilldown pointers
 data.forEach((el, i) => {
@@ -85,7 +85,7 @@ const options = {
   colorAxis: {
     min: 0,
     max: 25,
-    tickInterval: 3,
+    tickInterval: 1,
     stops: [[0, '#F1EEF6'], [0.65, '#900037'], [1, '#500007']],
     labels: {
       format: '{value}',
@@ -145,20 +145,48 @@ const options = {
   },
 };
 
-class CustomHighcharts extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.options = options;
-    this.options.series[0].data[0].value = 5;
-  }
+const mapStateToProps = (state) => ({
+  reduxData: state.data,
+});
 
-  render() {
-    return (
-      <div>
-        <HighchartsReact highcharts={Highcharts} options={this.options} constructorType="mapChart" />
-      </div>
-    );
-  }
-}
+const CustomHighcharts = (props) => {
+  const { reduxData } = useSelector(mapStateToProps, shallowEqual);
+
+  const setMaxValue = (data) => {
+    const values = Object.values(data);
+    const maxValue = Math.max(...values);
+    options.colorAxis.max = maxValue;
+    options.colorAxis.tickInterval = maxValue / 5;
+  };
+
+  const setMapValues = (data) => {
+    const newData = {
+      ...data,
+      'ua-dt': 0,
+      'ua-lh': 0,
+      'ua-kr': 0,
+      'ua-sc': 0,
+    };
+    const dataKeys = Object.keys(newData);
+    for (const item of options.series[0].data) {
+      if (dataKeys.includes(item.drilldown)) {
+        item.value = newData[item.drilldown];
+      }
+    }
+  };
+
+  const setTitle = (title) => {
+    options.title.text = title || '';
+  };
+
+  setMaxValue(props.data);
+  setMapValues(props.data);
+  setTitle(props.title);
+  return (
+    <div>
+      <HighchartsReact highcharts={Highcharts} options={options} constructorType="mapChart" />
+    </div>
+  );
+};
 
 export default CustomHighcharts;
