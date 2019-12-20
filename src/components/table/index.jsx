@@ -278,7 +278,7 @@ selected
                         <TableCell component="th" id={labelId} scope="row" padding="none">
                           {row.name}
                         </TableCell>
-                        <TableCell align="right">{row.value}</TableCell>
+                        <TableCell align="right" padding="none">{row.value}</TableCell>
                         {/* <TableCell align="right">{row.fat}</TableCell>
                         <TableCell align="right">{row.carbs}</TableCell>
                         <TableCell align="right">{row.protein}</TableCell> */}

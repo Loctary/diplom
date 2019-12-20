@@ -26,16 +26,12 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton> */}
           <Link href={`${isLinkOnGitHub ? 'https://loctary.github.io/diplom/#/map' : '/#/map'}`} variant="h6" className={classes.title}>
             Карта
           </Link>
           <Link href={`${isLinkOnGitHub ? 'https://loctary.github.io/diplom/#/graphs' : '/#/graphs'}`} variant="h6" className={classes.title}>
             Графіки
           </Link>
-          {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>
     </div>

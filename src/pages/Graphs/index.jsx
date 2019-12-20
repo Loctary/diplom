@@ -110,12 +110,14 @@ const Graphs = () => {
           onChange={handleChangeValue}
         >
           {Object.keys(storage[industry]).map((item) => (
+            storage[industry][item].title && (
             <MenuItem
               key={item}
               value={item}
             >
               {storage[industry][item].title}
             </MenuItem>
+            )
           ))}
         </Select>
       </FormControl>
@@ -164,15 +166,18 @@ const Graphs = () => {
 
       { value && (region1 || region2)
       && (
-      <Chart
-        data1={reg1Data}
-        data2={reg2Data}
-        format={storage[industry][value].format}
-        chartTitle={industry}
-        title={storage[industry][value].title}
-        name1={regionsEngUrk[region1]}
-        name2={regionsEngUrk[region2]}
-      />
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <Chart
+            data1={reg1Data}
+            data2={reg2Data}
+            format={storage[industry][value].format}
+            chartTitle={storage[industry].title}
+            title={`${storage[industry][value].title}${storage[industry][value].note ? '*' : ''}`}
+            name1={regionsEngUrk[region1]}
+            name2={regionsEngUrk[region2]}
+          />
+          {storage[industry][value].note && <span style={{ alignSelf: 'center', marginTop: '20px' }}><i>{storage[industry][value].note}</i></span>}
+        </div>
       )}
     </div>
   );

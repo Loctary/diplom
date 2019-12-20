@@ -34,15 +34,19 @@ const regionsEngUrk = objectFlip(regionsUkrEng);
 
 const storage = {
   activity: {
+    key: 'activity',
+    title: 'Діяльність регіону',
     vvp: {
       key: 'vvp',
       title: 'Частка регіону у ВВП',
       format: '{y} млрд. грн',
+      note: '* останнє оновлення інформації було в 2017 р.',
     },
     vvpPerPerson: {
       key: 'vvpPerPerson',
       title: 'Обсяг вироблюваної продукції у промисловості на одну людину',
       format: '{y} грн/особу',
+      note: '* останнє оновлення інформації було в 2017 р.',
     },
     sgLevel: {
       key: 'sgLevel',
@@ -53,11 +57,13 @@ const storage = {
       key: 'wage',
       title: 'Середній рівень заробітної плати у регіоні',
       format: '{y} грн/особу',
+      note: '* останнє оновлення інформації було в 2018 р.',
     },
     companies: {
       key: 'companies',
       title: 'Число компаній і фірм у регіоні усіх форм власності',
       format: '{y} одиниць',
+      note: '* останнє оновлення інформації було в 2018 р.',
     },
     unprofitableCompanies: {
       key: 'unprofitableCompanies',
@@ -66,6 +72,8 @@ const storage = {
     },
   },
   demographic: {
+    key: 'demographic',
+    title: 'Демографічний показник',
     population: {
       key: 'population',
       title: 'Населення у регіоні',
@@ -75,35 +83,45 @@ const storage = {
       key: 'cityVillageRatio',
       title: 'Співвідношення між жителями міст і сел регіону',
       format: '{y} раз',
+      note: '* статистика однакова для усіх регіонів',
     },
   },
   market: {
+    key: 'market',
+    title: 'Ринкові видносини',
     privatized: {
       key: 'privatized',
       title: 'Приватизованих підприємств',
       format: '{y} шт.',
+      note: '* останнє оновлення інформації було в 2018 р.',
     },
     privateCompanies: {
       key: 'privateCompanies',
       title: 'Компанії і фірмм недержавної форми власності',
       format: '{y} шт.',
+      note: '* останнє оновлення інформації було в 2018 р.',
     },
     banksAndInsurance: {
       key: 'banksAndInsurance',
       title: 'Банківські і страхові установи',
       format: '{y} шт.',
+      note: '* останнє оновлення інформації було в 2018 р.',
     },
   },
   risks: {
+    key: 'risks',
+    title: 'Ризики',
     crimes: {
       key: 'crimes',
       title: 'Кількість злочинів у регіоні',
       format: '{y} тис. злочинів',
+      note: '* останнє оновлення інформації було в 2018 р.',
     },
     emissions: {
       key: 'emissions',
       title: 'Шкідливих викидів',
       format: '{y} тис. тон',
+      note: '* останнє оновлення інформації було в 2018 р.',
     },
   },
 };

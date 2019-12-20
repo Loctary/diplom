@@ -25,53 +25,6 @@ window.Highcharts = Highcharts;
 
 const options = {
   chart: {
-    // events: {
-    //     drilldown(e) {
-    //         if (!e.seriesOptions) {
-    //             const chart = this;
-    //             const mapKey = `countries/ua/${e.point.drilldown}-all`;
-    //             // Handle error, the timeout is cleared on success
-    //             var fail = setTimeout(function () {
-    //                 if (!Highcharts.maps[mapKey]) {
-    //                     chart.showLoading(`<i class="icon-frown"></i> Failed loading ${e.point.name}`);
-    //                     fail = setTimeout(function () {
-    //                         chart.hideLoading();
-    //                     }, 1000);
-    //                 }
-    //             }, 3000);
-
-    //             // Show the spinner
-    //             chart.showLoading('<i class="icon-spinner icon-spin icon-3x"></i>'); // Font Awesome spinner
-
-    //             // Load the drilldown map
-    //             $.getScript(`https://code.highcharts.com/mapdata/${mapKey}.js`, function () {
-    //                 data = Highcharts.geojson(Highcharts.maps[mapKey]);
-
-    //                 // Set a non-random bogus value
-    //                 $.each(data, function (i) {
-    //                     this.value = i;
-    //                 });
-
-    //                 // Hide loading and add series
-    //                 chart.hideLoading();
-    //                 clearTimeout(fail);
-    //                 chart.addSeriesAsDrilldown(e.point, {
-    //                     name: e.point.name,
-    //                     data,
-    //                     dataLabels: {
-    //                         enabled: true,
-    //                         format: '{point.name}',
-    //                     },
-    //                 });
-    //             });
-    //         }
-
-    //         this.setTitle(null, { text: e.point.name });
-    //     },
-    //     drillup() {
-    //         this.setTitle(null, { text: '' });
-    //     },
-    // },
   },
   title: {
     text: 'Custom Chart Title',

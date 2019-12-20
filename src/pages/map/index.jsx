@@ -70,13 +70,13 @@ const Map = () => {
     return (attractiveness.activity * 0.4
       + attractiveness.demographic * 0.2
       + attractiveness.market * 0.25
-      + attractiveness.risks * 0.15) * 2;
+      + attractiveness.risks * 0.15);
   };
 
   const cityCodes = Object.keys(regionsEngUrk);
   const finalData = cityCodes.reduce((res, curr, currIndex) => ({
     ...res,
-    [cityCodes[currIndex]]: evaluateFinalIndex(curr),
+    [cityCodes[currIndex]]: Math.round(evaluateFinalIndex(curr) * 10000000) / 10000000,
   }), {});
 
   console.log(finalData);
@@ -104,8 +104,9 @@ const Map = () => {
           </Select>
         </FormControl>
       </div>
-      <div>
-        <Highchart data={finalData} key={year} title="Індекс інвестиційної привабливості регіонів" />
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <Highchart data={finalData} key={year} title="Індекс інвестиційної привабливості регіонів*" />
+        <span style={{ alignSelf: 'center', marginTop: '20px', fontSize: '8px' }}><i>* Дані наведено без урахування тимчасово окупованої території Автономної Республіки Крим, м.Севастополя та частини тимчасово окупованих територій у Донецькій та Луганській областях.</i></span>
       </div>
       <div>
         <Table1 names={Object.keys(finalData)} values={Object.values(finalData)} />

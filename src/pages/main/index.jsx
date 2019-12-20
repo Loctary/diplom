@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import {
+ useDispatch, shallowEqual, useSelector, connect 
+} from 'react-redux';
 import {
   Switch, Redirect, Route, HashRouter,
 } from 'react-router-dom';
+import LoaderSpinner from 'react-loader-spinner';
 import Header from 'components/header';
 import XLSX from 'xlsx';
 import Map from '../map';
@@ -26,49 +30,78 @@ const parseExcel = async () => {
   return json;
 };
 
+const mapStateToProps = (state) => ({
+  isLoading: state.ui.isLoading,
+  data: state.data,
+});
 
-class Main extends Component {
-  async componentDidMount() {
-    // fetchData();
-    const json = await parseExcel();
-    console.log(json);
+const mapDispatchToProps = {
+  fetchData: () => ({ type: 'FETCH_DATA' }),
+};
 
+const Loader = () => (
+  <div style={{
+ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', display: 'flex', flexDirection: 'column', alignItems: 'center' 
+}}>
 
-    // reader.readAsDataURL(blob);
-    // reader.onloadend = function () {
-    //   const base64data = reader.result;
-    //   const workbook = XLSX.read(base64data, { raw: true });
-    //   console.log(workbook);
-    // };
-    // const file = new File([blob], 'kek.xlsx', { type: 'file', lastModified: Date.now() });
-    // console.log(file);
-    // const excel = XLSX.read(file);
-    // console.log(excel);
+    <LoaderSpinner type="TailSpin" color="#000" height={80} width={80} />
+    <span style={{ textAlign: 'center', marginTop: '20px' }}><i>Зачекайте, будь-ласка, дані завантажуються</i></span>
+  </div>
+);
 
-    // const reader = new FileReader();
-    // reader.onload = function(event) {
-    // const data = event.target.result
-    // }
-    // console.log(blobToFile(blob, 'kek'));
-
-    // try {
-    //   this.readFile(file)
-    //     .then((textFile) => XLSX.read(textFile, { type: 'binary', cellDates: true }))
-    //     .then((res) => {
-    //       const { uploadedParsedFile, validationErrors } = this.handleUploadedExcel(res);
-    //       this.setState({
-    //         uploadedFile: file,
-    //         uploadedParsedFile,
-    //         validationErrors,
-    //         activeTabName: uploadedParsedFile.tabs[0].modelName,
-    //       });
-    //     });
-    // } catch (error) {
-    // }
+class Main extends React.Component {
+  componentDidMount() {
+    const { fetchData } = this.props;
+    fetchData();
   }
 
+  // const dispatch = useDispatch();
+  // const { data, isLoading } = useSelector(mapStateToProps, shallowEqual);
+  // useEffect(() => dispatch({ type: 'FETCH_DATA' }), []);
+
+  // async componentDidMount() {
+  // fetchData();
+  // const json = await parseExcel();
+  // console.log(json);
+
+
+  // reader.readAsDataURL(blob);
+  // reader.onloadend = function () {
+  //   const base64data = reader.result;
+  //   const workbook = XLSX.read(base64data, { raw: true });
+  //   console.log(workbook);
+  // };
+  // const file = new File([blob], 'kek.xlsx', { type: 'file', lastModified: Date.now() });
+  // console.log(file);
+  // const excel = XLSX.read(file);
+  // console.log(excel);
+
+  // const reader = new FileReader();
+  // reader.onload = function(event) {
+  // const data = event.target.result
+  // }
+  // console.log(blobToFile(blob, 'kek'));
+
+  // try {
+  //   this.readFile(file)
+  //     .then((textFile) => XLSX.read(textFile, { type: 'binary', cellDates: true }))
+  //     .then((res) => {
+  //       const { uploadedParsedFile, validationErrors } = this.handleUploadedExcel(res);
+  //       this.setState({
+  //         uploadedFile: file,
+  //         uploadedParsedFile,
+  //         validationErrors,
+  //         activeTabName: uploadedParsedFile.tabs[0].modelName,
+  //       });
+  //     });
+  // } catch (error) {
+  // }
+  // }
+
   render() {
-    console.log(window.location);
+    const { isLoading, data } = this.props;
+    if (isLoading || !Object.keys(data).length) return <Loader />;
+
     return (
       <HashRouter>
         <div>
@@ -90,7 +123,7 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 
 // const stream = await fetchData();
